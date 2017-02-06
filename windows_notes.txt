@@ -10,3 +10,15 @@ Members of this group have full control of all domain controllers in the domain.
 
 Before a Domain Controller is promoted to that role, it is a simple workgroup (standalone) server and has a local Administrator account and a local Administrators group. When you create a domain, those accounts don't go away; they're incorporated into the domain as the domain Administrator account and the domain builtin\Administrators group.
 The builtin\Administrators group has Administrative access to the Domain Controllers, but is not automatically granted administrative access to all computers within the domain, whereas Domain Admins are.
+
+
+2. Few words about UAC in Windows
+
+[http://serverfault.com/questions/646691/user-in-administrators-group-has-not-the-same-rights-as-administrator-win-2012]http://serverfault.com/questions/646691/user-in-administrators-group-has-not-the-same-rights-as-administrator-win-2012
+
+This could be caused by User Account Control, a feature (hated by many) which makes so that, even if you have administrative rights, you don't actually have them unless you explicitly request them. There are two distinct policies governing UAC behaviour (both found in Computer settings\Windows settings\Security settings\Local policies\Security options), one for the built-in Administrator account, and another one for all other administrative users:
+
+    User Account Control: Admin Approval Mode for the built-in Administrator account (disabled by default)
+    User Account Control: Run all administrators in Admin Approval Mode (enabled by default)
+
+What this means is: by default, the built-in Administrator account is not affected by UAC, while all other administrative users are; thus, it's possible for an administrative user (different from the built-it Administrator) to not actually have administrative rights, even if it's a member of the Administrators group.
