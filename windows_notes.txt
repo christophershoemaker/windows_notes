@@ -1,0 +1,12 @@
+1. Few good words i found on windows buildin/Administrators
+
+[https://social.technet.microsoft.com/Forums/windowsserver/en-US/2e014028-91c3-4310-8aaf-38e35987b5f2/builtinadministrators-in-ad-a-simple-question?forum=winservergen]https://social.technet.microsoft.com/Forums/windowsserver/en-US/2e014028-91c3-4310-8aaf-38e35987b5f2/builtinadministrators-in-ad-a-simple-question?forum=winservergen
+The Bultin\Administrators group in active directory grants local admin rights on domain controllers only.
+The local Administrators group on member servers and workstations is controlled by group policy. By default the group Domain Admins is added to the local administrators group, however this can be changed.
+
+[http://serverfault.com/questions/174200/domain-admins-vs-administrators-in-windows-ad-dc]http://serverfault.com/questions/174200/domain-admins-vs-administrators-in-windows-ad-dc
+
+Members of this group have full control of all domain controllers in the domain. By default, the Domain Admins and Enterprise Admins groups are members of the Administrators group. The Administrator account is also a default member. Because this group has full control in the domain, add users with caution.
+
+Before a Domain Controller is promoted to that role, it is a simple workgroup (standalone) server and has a local Administrator account and a local Administrators group. When you create a domain, those accounts don't go away; they're incorporated into the domain as the domain Administrator account and the domain builtin\Administrators group.
+The builtin\Administrators group has Administrative access to the Domain Controllers, but is not automatically granted administrative access to all computers within the domain, whereas Domain Admins are.
